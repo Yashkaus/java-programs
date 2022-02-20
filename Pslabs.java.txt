@@ -1,0 +1,127 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        // write your code here
+        Pslabs ps=new Pslabs();
+        ps.getinfo();
+
+
+    }
+}
+class Pslabs{
+
+    static int same_dob=0;
+    static int count = 1;
+    static int maleCount = 0;
+    static int femaleCount = 0;
+
+    void getinfo(){
+        System.out.println("plz enter the number of student");
+        Scanner input = new Scanner(System.in);
+        int n = input.nextInt();
+
+        String name []= new String[n];
+        String city []= new String[n];
+        String gender [] = new String[n];
+        String date_of_birth []=new String[n];
+        int math[]=new int[n];
+        int phy[]=new int[n];
+        int chem[]=new int[n];
+        double avg[]=new double[n];
+        int id[]=new int[n];
+        int[] total =new int[n];
+
+
+
+
+        for (int i=0;i<=n-1;i++) {
+//name code start from here
+
+            System.out.println("plz enter student " + (i+1) + "name");
+            name [i]= input.next();
+
+            //address code start from here
+            System.out.println("city");
+            city[i] = input.next();
+
+            // date of birth code start from here
+
+            System.out.println("enter date of birth  like 26,june");
+            date_of_birth[i] = input.next();
+            while(i>=0) {
+                for (int a = 0; a <=date_of_birth.length; a++) {
+                    for (int m = a + 1; m < date_of_birth.length; m++) {
+                        if (date_of_birth[a].equals(date_of_birth[m])) {
+                            ++same_dob;
+                        }
+                    }
+                }
+                break;
+            }
+            //gender code start from here
+            System.out.println("gender M OR F ");
+            gender[i] = input.next();
+            while (i>=0){
+
+                    if (gender[i].contains("M")) {
+                        maleCount++;
+
+                    }
+                    else if (gender[i].contains("m")) {
+                        maleCount++;
+                    }
+                    else if (gender[i].contains("F")) {
+                        femaleCount++;
+                    }
+                    else if (gender[i].contains("f")) {
+                        femaleCount++;
+                    }
+break;
+                }
+
+            System.out.println("enter the marks in phy");
+            phy[i] = input.nextInt();
+            System.out.println("chem");
+            chem[i] = input.nextInt();
+            System.out.println("math");
+            math[i] = input.nextInt();
+            total [i]=math[i]+chem[i]+phy[i];
+            avg[i]=math[i]+phy[i]+chem[i]/3;
+
+
+        }
+        System.out.println("Name---\tgender \tdateofbirth\tCity\tmath\tchem\tphy\ttotal marks\tRemark---");
+        System.out.println("  ");
+        for (int i = 0; i < n; i++) {
+            String remark;
+            if (avg[i] < 40)
+                remark = "Poor";
+            else if (avg[i] < 60)
+                remark = "Pass";
+            else if (avg[i] < 75)
+                remark = "First Class";
+            else if (avg[i] < 85)
+                remark = "Distinction";
+            else
+                remark = "Excellent";
+            System.out.println(name[i] + "\t"
+                    +gender    [i] +"\t"
+                    + date_of_birth[i] + "\t"
+                    +city[i]+"\t"
+                    +math[i] +"\t"
+                    +chem[i]+"\t"
+                    +phy[i]+"\t"
+                    +total[i] +"\t"
+                    + remark +"\t");
+
+
+        }
+        System.out.println("TOTAL BOYS : " + maleCount);
+        System.out.println("TOTAL GIRLS : " + femaleCount);
+        System.out.println(" there is " +  same_dob  + " student which have same date of birth");
+    }
+}
